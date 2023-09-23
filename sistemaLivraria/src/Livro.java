@@ -11,6 +11,10 @@ public class Livro {
     int ano, estoque;
     double valor;
 
+    public void cadastraLivro(){
+        
+    }
+
     
 
 }

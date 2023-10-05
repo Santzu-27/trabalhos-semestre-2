@@ -11,8 +11,8 @@ public class Livro {
     int ano, estoque;
     double valor;
 
-    public void cadastraLivro(){
-        
+    public double valorTotal(){
+        return estoque * valor;
     }
 
     

@@ -134,8 +134,8 @@ public class GABRIELSANTOSDESOUZA_ExeVetor {
             "7) Exibir vetor\n" + 
             "8) Encerrar programa\n" +
             "9) Gerar números aleatórios\n"+
-            "10) Busca binária\n"
-            "11) Comparar buscas \n"
+            "10) Busca binária\n" +
+            "11) Comparar buscas \n "
             );
             System.out.print("Digite o comando a ser realizado -> ");
             int task = tec.nextInt();

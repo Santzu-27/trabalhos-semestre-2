@@ -116,7 +116,7 @@ public class GABRIELSANTOSDESOUZA_recursividade {
                             "7) Exibir vetor\n" +
                             "8) Encerrar programa\n" +
                             "9) Gerar números aleatórios\n" +
-                            "10) Busca binária\n");
+                            "10) Busca binária recursiva");
             System.out.print("Digite o comando a ser realizado -> ");
             int task = tec.nextInt();
             switch (task) {
@@ -148,14 +148,6 @@ public class GABRIELSANTOSDESOUZA_recursividade {
                     randomNumbers(array);
                     break;
                 case 10:
-                    System.out.print("Digite o número a ser procurado: ");
-                    value = tec.nextInt();
-                    counting = 0;
-                    start = 0;
-                    end = array.length - 1;
-                    recursive(value, counting, start, end, array);
-                    break;
-                case 11:
                     System.out.println("Digite o valor a ser procurado: ");
                     value = tec.nextInt();
                     counting = 0;

@@ -122,8 +122,37 @@ public class GABRIELSANTOSDESOUZA_ordenacao {
 
 
     //10 5 11 7 3 8 13 9
-    public static void quickSort(int[] arrayP){
+    static int particao(int[] vetor, int esquerda, int direita){
+        int meio = (int) (esquerda + direita)/2;
+        int pivo = vetor[meio];
+        int i = esquerda - 1;
+        int j = direita + 1;
+        while (true) {
+            do{
+                i++;
+                // System.out.println(i);
+                // System.out.println(vetor[i]);
+                // System.out.println("_______________________________");
+            }while(vetor[i] < pivo);
+            do{
+                j--;
+                // System.out.pri"_______________________________");
+            }while (vetor[j] > pivo);
+            if(i>= j){
+                return j;
+            }
+            int aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
+        }
+    }
 
+    static void quickSort(int[] vetor, int esquerda, int direita){
+        if(esquerda < direita){
+            int p = particao(vetor, esquerda, direita);
+            quickSort(vetor, esquerda, p);
+            quickSort(vetor, p+1, direita);
+        }
     }
 
     public static void swap(int[] arrayP, int i, int i1) {
@@ -228,7 +257,7 @@ public class GABRIELSANTOSDESOUZA_ordenacao {
                             insertionSort(array);
                             break;
                         case 4:
-                            quickSort(array);
+                            quickSort(array, 0, array.length-1);
                             break;
                         default:
                             break;

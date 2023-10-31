@@ -2,32 +2,32 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class GABRIELSANTOSDESOUZA_ordenacao {
-    
-    public static void addValue(int[] arrayP){
+
+    public static void addValue(int[] arrayP) {
         Scanner tec = new Scanner(System.in);
         System.out.println("Digite o valor a ser inserido -> ");
         int value = tec.nextInt();
-        for(int i = 0; i < arrayP.length; i++){
-            if(arrayP[i] == 0){
+        for (int i = 0; i < arrayP.length; i++) {
+            if (arrayP[i] == 0) {
                 arrayP[i] = value;
                 break;
             }
         }
     }
-    
-    public static void deleteValue(int[] arrayP){
+
+    public static void deleteValue(int[] arrayP) {
         Scanner tec = new Scanner(System.in);
         System.out.println("Digite a posição do valor a ser apagado -> ");
         int value = tec.nextInt();
         System.out.println("Valor '" + arrayP[value] + "' deletado.");
         arrayP[value] = 0;
     }
-    
-    public static void searchValue(int[] arrayP){
+
+    public static void searchValue(int[] arrayP) {
         Scanner tec = new Scanner(System.in);
         System.out.println("Digite a posição do valor a ser consultado -> ");
         int value = tec.nextInt();
-        if(value > 10000 || value < 0){
+        if (value > 10000 || value < 0) {
             System.out.println("Digite uma posição de 0 a 10000");
             searchValue(arrayP);
             return;
@@ -35,90 +35,108 @@ public class GABRIELSANTOSDESOUZA_ordenacao {
         System.out.printf("O valor da posição %d é: %d \n", value, arrayP[value]);
     }
 
-    public static void consultValues(int[] arrayP){
-        for(int i=0; i< arrayP.length; i++){
-            if(arrayP[i] != 0){
-                System.out.printf(" %d ,", arrayP[i] );
+    public static void consultValues(int[] arrayP) {
+        for (int i = 0; i < arrayP.length; i++) {
+            if (arrayP[i] != 0) {
+                System.out.printf(" %d ,", arrayP[i]);
             }
         }
         System.out.println();
     }
 
-    public static void biggerLower(int[] arrayP){
-        int bigger, lower; bigger = arrayP[0]; lower = arrayP[0];
-        for(int i=0; i< arrayP.length; i++){
-            if(arrayP[i] > bigger){
+    public static void biggerLower(int[] arrayP) {
+        int bigger, lower;
+        bigger = arrayP[0];
+        lower = arrayP[0];
+        for (int i = 0; i < arrayP.length; i++) {
+            if (arrayP[i] > bigger) {
                 bigger = arrayP[i];
             }
-            if(arrayP[i] < lower){
+            if (arrayP[i] < lower) {
                 lower = arrayP[i];
             }
         }
         System.out.printf("Maior: %d \n Menor: %d \n ", bigger, lower);
     }
-    
-    public static void showArray(int[] arrayP){
-        for(int i=0; i< arrayP.length; i++){
+
+    public static void showArray(int[] arrayP) {
+        for (int i = 0; i < arrayP.length; i++) {
             System.out.printf("%d) %d   ", i, arrayP[i]);
         }
         System.out.println();
     }
 
-    public static void sortNumbers(int[] arrayP){
-        Scanner tec = new Scanner(System.in);
-        int i, u;
-        System.out.println(
-            "Selecione o método de ordenação: \n" + 
-            "1) BubbleSort \n" +
-            "2) SelectionSort \n" +
-            "3) InsertionSort \n" +
-            "4) QuickSort"
-        );
-        int chosen = tec.nextInt();
-
-        switch (chosen) {
-            case 1: //BUBBLE
-                for(u = arrayP.length-1; u > 0;  u--){
-                    for(i = 0; i < u; i++){
-                        if(arrayP[i] > arrayP[i+1]){
-                            swap(arrayP, i, i+1 );
-                        }
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    public static void swap(int[] arrayP, int i, int i1){
-        int ast = arrayP[i];
-        arrayP[i] = arrayP[i1];
-        arrayP[i1] = ast;
-    }
-    
-    
-    public static void clearArray(int[] arrayP){
-        for(int i=0; i< arrayP.length; i++){
+    public static void clearArray(int[] arrayP) {
+        for (int i = 0; i < arrayP.length; i++) {
             arrayP[i] = 0;
         }
     }
-    
-    public static void randomNumbers(int arrayP[]){
+
+    public static void randomNumbers(int arrayP[]) {
         Random aleatorio = new Random();
-        int num = aleatorio.nextInt(9999) +1;
-        for(int i=0; i< arrayP.length; i++){
+        int num = aleatorio.nextInt(9999) + 1;
+        for (int i = 0; i < arrayP.length; i++) {
             arrayP[i] = num;
             num = aleatorio.nextInt(9999) + 1;
         }
     }
 
-    public static int recursive(int value, int counting, int start, int end, int arrayP[]){
-        int middle = (start + end)/2;
-        if(start <= end){
+    public static void bubbleSort(int[] arrayP) {
+        int i, u;
+        for (u = arrayP.length - 1; u > 0; u--) {
+            for (i = 0; i < u; i++) {
+                if (arrayP[i] > arrayP[i + 1]) {
+                    swap(arrayP, i, i + 1);
+                }
+            }
+        }
+    }
+
+    public static void insertionSort(int[] arrayP) {
+        int x, i, u;
+        for (i = 1; i < arrayP.length; i++) {
+            x = arrayP[i];
+            u = i - 1;
+            while ((u >= 0) && arrayP[u] > x) {
+                arrayP[u + 1] = arrayP[u];
+                u--;
+            }
+            arrayP[u + 1] = x;
+        }
+    }
+
+
+    public static void selectionSort(int[] arrayP){
+        for(int i = 0; i < arrayP.length; i++){
+            int menor = i;
+            for(int u = i+1; u < arrayP.length; u++){
+                if(arrayP[u] < arrayP[menor]){
+                    menor = u;
+                    
+                    //
+                }
+            }
+            swap(arrayP, i, menor);
+        }
+    }
+
+
+    //10 5 11 7 3 8 13 9
+    public static void quickSort(int[] arrayP){
+
+    }
+
+    public static void swap(int[] arrayP, int i, int i1) {
+        int ast = arrayP[i];
+        arrayP[i] = arrayP[i1];
+        arrayP[i1] = ast;
+    }
+
+    public static int recursive(int value, int counting, int start, int end, int arrayP[]) {
+        int middle = (start + end) / 2;
+        if (start <= end) {
             counting++;
-            if(value == arrayP[middle]){
+            if (value == arrayP[middle]) {
                 System.out.println("O valor " + value + " foi encontrado na posição: " + middle);
                 return -1;
             }
@@ -133,7 +151,6 @@ public class GABRIELSANTOSDESOUZA_ordenacao {
         System.out.println("O valor não existe no vetor");
         return -1;
     }
-
 
     public static void main(String[] args) {
         Scanner tec = new Scanner(System.in);
@@ -193,7 +210,29 @@ public class GABRIELSANTOSDESOUZA_ordenacao {
                     recursive(value, counting, start, end, array);
                     break;
                 case 11:
-                    sortNumbers(array);
+                    System.out.println(
+                            "Selecione o método de ordenação: \n" +
+                                    "1) BubbleSort \n" +
+                                    "2) SelectionSort \n" +
+                                    "3) InsertionSort \n" +
+                                    "4) QuickSort");
+                    int chosen = tec.nextInt();
+                    switch (chosen) {
+                        case 1:
+                            bubbleSort(array);
+                            break;
+                        case 2:
+                            selectionSort(array);
+                            break;
+                        case 3:
+                            insertionSort(array);
+                            break;
+                        case 4:
+                            quickSort(array);
+                            break;
+                        default:
+                            break;
+                    }
                 default:
                     System.out.println("Comando invalido");
             }

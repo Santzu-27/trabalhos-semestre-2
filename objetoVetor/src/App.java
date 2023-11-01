@@ -7,7 +7,8 @@ public class App {
         int n = tec.nextInt();
         return n;
     }
-    public void menu(){
+
+    public static int menu(){
         System.out.println(
                 "01. Preencher o vetor do objeto com números pseudo-randômicos, em uma distribuição que minimize a possibilidade de valores duplicados.\n" +
                 "\n" +
@@ -38,10 +39,43 @@ public class App {
                 "34. Ordenar o vetor do objeto, utilizando o método Quicksort.\n" +
                 "\n" +
                 "Classe que define o Objeto desta aplicação:");
+                System.out.println("Digite um comando -> ");
+                int taskNumber = scanInt();
+                return taskNumber;
+    }
+
+    public static void doTask(int taskN){
+
     }
 
     public static void main(String[] args){
-        System.out.print("Digite o tamanho do vetor: ");
+        Scanner tec = new Scanner(System.in);
+        System.out.print("Digite o tamanho do vetor ->");
         Vetor array = new Vetor(scanInt());
+        String prog = "running";
+        do{
+            int taskNumber = menu();
+            switch(taskNumber) {
+                case 01:
+                    array.povoaVetor();
+                    break;
+                case 02:
+                    array.povoaVetorSequencial();
+                    break;
+                case 03:
+                    array.informaQuantosOcupados();
+                    break;
+                case 05:
+                    array.listArray();
+                    break;
+                default: 
+                    System.out.println("Comando inválido: '" + taskNumber + "' tente outro comando presente no menu");
+                    break;    
+            }
+            System.out.println("Digite para continuar:");
+            tec.nextLine();
+            
+        }while(prog == "running");
+        // doTask(taskNumber);
     }
 }

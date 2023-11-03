@@ -1,30 +1,31 @@
+import java.util.Scanner;
+
 public class Livro {
-        // ● Titulo
+    // ● Titulo
     // ● Código
     // ● Editora
     // ● Área
     // ● Ano
     // ● Valor
     // ● Quantidade em Estoque
-
+    Scanner tec = new Scanner(System.in);
+    Biblioteca library = new Biblioteca();
     String titulo, codigo, editora, area;
     int ano, estoque;
     double valor;
 
-    public double valorTotal(){
+    public double valorTotal() {
         return estoque * valor;
     }
 
-    public void info(){
-        System.out.println(">> Cod#" + lista.get(i).codigo+"\n" +
-                                "Titulo/Editora: " + lista.get(i).titulo + "/" + lista.get(i).editora+ "\n" +
-                                "Categoria: " + lista.get(i).area + "\n" +//
-                                "Ano: " + lista.get(i).ano + "\n" +//
-                                "Valor: " + lista.get(i).valor + "\n"+ //
-                                "Estoque: " + lista.get(i).estoque + "\n"+ //
-                                "Valor total em estoque: " + lista.get(i).valorTotal()
-                        );
+    public void info() {
+        System.out.println(">> Cod#" + this.codigo + "\n" +
+                "Titulo/Editora: " + this.titulo + "/" + this.editora + "\n" +
+                "Categoria: " + this.area + "\n" + //
+                "Ano: " + this.ano + "\n" + //
+                "Valor: " + this.valor + "\n" + //
+                "Estoque: " + this.estoque + "\n" + //
+                "Valor total em estoque: " + valorTotal());
     }
-    
 
 }

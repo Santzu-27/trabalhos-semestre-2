@@ -1,16 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileInputStream;
+
 public class Main {
-    public static void mostraLivro(ArrayList<Livro> lista, int i){
-        System.out.println(">> Cod#" + lista.get(i).codigo+"\n" +
-                                "Titulo/Editora: " + lista.get(i).titulo + "/" + lista.get(i).editora+ "\n" +
-                                "Categoria: " + lista.get(i).area + "\n" +//
-                                "Ano: " + lista.get(i).ano + "\n" +//
-                                "Valor: " + lista.get(i).valor + "\n"+ //
-                                "Estoque: " + lista.get(i).estoque + "\n"+ //
-                                "Valor total em estoque: " + lista.get(i).valorTotal()
-                        );
-    }
 
     public static void register(Livro livro, Biblioteca lib) {
         Scanner tec = new Scanner(System.in);
@@ -42,13 +34,14 @@ public class Main {
         lib.array.add(livro);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
         Biblioteca library = new Biblioteca();
+        Livro livro, bookI;
+        FileInputStream file = new FileInputStream("src/txtData.txt");
         int task, quant;
         double price;
         String prog = "rodando";
-        Livro livro, bookI;
         while(prog == "rodando"){
             livro = new Livro();
             System.out.println("1 – Cadastrar novo livro\n"+
@@ -58,6 +51,7 @@ public class Main {
             "5 - Buscar livros por preço\n"+
             "6 - Busca por quantidade em estoque\n"+
             "7 - Valor total no estoque\n"+
+            "8 - Carregar estoque\n"+
             "0 - Encerrar atividades\n");
             
             System.out.print("Digite o comando a ser realizado: ");
@@ -121,6 +115,12 @@ public class Main {
                             bookI.info();
                         }
                     }
+                    break;
+                case 8:
+                    
+                    break;
+                case 9:
+
                     break;
                 case 0:
                     System.out.println("Fim do programa.");

@@ -20,7 +20,7 @@ public class Biblioteca {
             System.out.println(line);
         }
         splitLine = line.split("@");
-        System.out.println(splitLine[1]);
+        System.out.println(splitLine[0]);
         // for (i = 0; i < array.size(); i++){
         //      splitInfo = splitLine[i].split(",");
         //      splitInfo[0] = array.get(i).codigo;

@@ -2,7 +2,7 @@ import java.io.FileInputStream;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
-        FileInputStream arquivo = new FileInputStream("src/arquivo.txt");
+        FileInputStream arquivo = new FileInputStream("testes/txt/src/arquivo.txt");
         Scanner entradaTexto = new Scanner(arquivo);
         String linha;
         String [] SL;
@@ -13,6 +13,8 @@ public class Main {
             SL = linha.split(",");
             System.out.println(SL[0]);
             System.out.println(SL[1]);
+            System.out.println(SL[2]);
+            SL[2] = "AKDSKO,DKOAKDSOK,DKAODWAO";
             System.out.println(SL[2]);
         }
     }

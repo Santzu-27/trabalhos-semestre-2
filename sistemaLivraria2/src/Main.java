@@ -38,7 +38,7 @@ public class Main {
         Scanner tec = new Scanner(System.in);
         Biblioteca library = new Biblioteca();
         Livro livro, bookI;
-        FileInputStream file = new FileInputStream("src/txtData.txt");
+        // FileInputStream file = new FileInputStream("sistemaLivraria2/src/txtData.txt");
         int task, quant;
         double price;
         String prog = "rodando";

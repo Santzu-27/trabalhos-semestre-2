@@ -126,6 +126,11 @@ public class Main {
                     library.loadFile();
                     break;
                 case 0:
+                    System.out.println("Deseja atualizar os dados antes de encerrar? (S/N)");
+                    String resp = tec.next();
+                    if(resp.equals("S")){
+                        library.loadFile();
+                    }
                     System.out.println("Fim do programa.");
                     prog = "cabô";
                     break;
@@ -134,9 +139,6 @@ public class Main {
                 case 77:
                     autoReg(livro, library, count);
                     count++;
-                    break;  
-                case 88:
-                    library.loadFile();
                     break;
             }
 

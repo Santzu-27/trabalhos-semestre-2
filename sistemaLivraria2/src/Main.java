@@ -123,7 +123,7 @@ public class Main {
                     library.loadFile();
                     break;
                 case 9:
-
+                    library.loadFile();
                     break;
                 case 0:
                     System.out.println("Fim do programa.");

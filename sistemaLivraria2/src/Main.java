@@ -38,7 +38,7 @@ public class Main {
         Scanner tec = new Scanner(System.in);
         Biblioteca library = new Biblioteca();
         Livro livro, bookI;
-        // FileInputStream file = new FileInputStream("sistemaLivraria2/src/txtData.txt");
+        FileInputStream file = new FileInputStream("sistemaLivraria2/src/txtData.txt");
         int task, quant;
         double price;
         String prog = "rodando";
@@ -52,6 +52,7 @@ public class Main {
             "6 - Busca por quantidade em estoque\n"+
             "7 - Valor total no estoque\n"+
             "8 - Carregar estoque\n"+
+            "9 - Atualizar arquivo de estoque\n"+
             "0 - Encerrar atividades\n");
             
             System.out.print("Digite o comando a ser realizado: ");

@@ -29,9 +29,8 @@ public class Biblioteca {
              splitInfo[4] = array.get(i).editora;
              splitInfo[5] = Double.toString(array.get(i).valor);
              splitInfo[6] = Integer.toString(array.get(i).estoque);
-             System.out.println(splitInfo[1]);
-             System.out.println(splitLine[i]);
         }
+        
 
     }
     //<codigo>,<titulo>,<ano>,<área/gênero>,<editora>,R$<valor>,<qtd em estoque>

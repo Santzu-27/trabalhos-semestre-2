@@ -120,7 +120,7 @@ public class Main {
                     }
                     break;
                 case 8:
-                    
+                    library.loadFile();
                     break;
                 case 9:
 

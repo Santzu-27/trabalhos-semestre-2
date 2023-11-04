@@ -23,8 +23,8 @@ public class Main {
         lib.array.add(livro);
     }
 
-    public static void autoReg(Livro livro, Biblioteca lib){
-        livro.titulo = "IT";
+    public static void autoReg(Livro livro, Biblioteca lib, int test){
+        livro.titulo = "IT" + test;
         livro.codigo = "7878";
         livro.editora = "Panam";
         livro.area = "Terror";
@@ -38,10 +38,12 @@ public class Main {
         Scanner tec = new Scanner(System.in);
         Biblioteca library = new Biblioteca();
         Livro livro, bookI;
-        FileInputStream file = new FileInputStream("sistemaLivraria2/src/txtData.txt");
         int task, quant;
         double price;
         String prog = "rodando";
+
+        int count = 1;
+
         while(prog == "rodando"){
             livro = new Livro();
             System.out.println("1 – Cadastrar novo livro\n"+
@@ -130,8 +132,12 @@ public class Main {
                 //Cadastro automatico para teste do programa;//
                 //Cadastro automatico para teste do programa;//
                 case 77:
-                    autoReg(livro, library);
+                    autoReg(livro, library, count);
+                    count++;
                     break;  
+                case 88:
+                    library.loadFile();
+                    break;
             }
 
         }

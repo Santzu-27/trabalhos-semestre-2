@@ -11,33 +11,19 @@ public class App {
     public static int menu(){
         System.out.println(
                 "01. Preencher o vetor do objeto com números pseudo-randômicos, em uma distribuição que minimize a possibilidade de valores duplicados.\n" +
-                "\n" +
                 "02. Preencher o vetor do objeto com números pseudo-randômicos em ordem crescente;\n" +
-                "\n" +
                 "03. Informar o total de elementos válidos no vetor do objeto;\n" +
-                "\n" +
                 "04. Informar o maior e o menor valores existentes no vetor do objeto;\n" +
-                "\n" +
                 "05. Listar todo o conteúdo do vetor do objeto;\n" +
-                "\n" +
                 "11. Inserir um valor no vetor do objeto em uma determinada posição.\n" +
-                "\n" +
                 "12. Apagar um valor do vetor do objeto, informando o valor a ser removido;\n" +
-                "\n" +
                 "13. Apagar um valor do vetor do objeto, informando a posição do valor a ser removido.\n" +
-                "\n" +
                 "21. Consultar a existência de um valor no vetor do objeto, utilizando busca sequencial;\n" +
-                "\n" +
                 "22. Consultar a existência de um valor no vetor do objeto, utilizando busca binária;\n" +
-                "\n" +
                 "31. Ordenar o vetor do objeto, utilizando o método Bubblesort;\n" +
-                "\n" +
                 "32. Ordenar o vetor do objeto, utilizando o método Insertionsort;\n" +
-                "\n" +
                 "33. Ordenar o vetor do objeto, utilizando o método Selectionsort.\n" +
-                "\n" +
                 "34. Ordenar o vetor do objeto, utilizando o método Quicksort.\n" +
-                "\n" +
                 "Classe que define o Objeto desta aplicação:");
                 System.out.println("Digite um comando -> ");
                 int taskNumber = scanInt();
@@ -57,7 +43,7 @@ public class App {
             int taskNumber = menu();
             switch(taskNumber) {
                 case 01:
-                    array.povoaVetor();
+                    array.povoaVetor(false);
                     break;
                 case 02:
                     array.povoaVetorSequencial();
@@ -65,16 +51,27 @@ public class App {
                 case 03:
                     array.informaQuantosOcupados();
                     break;
+                case 04:
+                    array.maiorMenor();
+                    break;
                 case 05:
                     array.listArray();
+                    break;
+                case 11:
+                    array.atribuiValor();
+                    break;
+                case 12:
+                    array.removeValor();
                     break;
                 default: 
                     System.out.println("Comando inválido: '" + taskNumber + "' tente outro comando presente no menu");
                     break;    
             }
-            System.out.println("Digite para continuar:");
-            tec.nextLine();
-            
+            System.out.println("Deseja continuar? (S/N) ");
+            prog = tec.nextLine();
+            if(prog.equals("S") || prog.equals("s")){
+                prog = "running";
+            }
         }while(prog == "running");
         // doTask(taskNumber);
     }

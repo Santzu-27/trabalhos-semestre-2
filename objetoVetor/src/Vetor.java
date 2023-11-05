@@ -1,14 +1,16 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Vetor {
-    int n;
-    boolean sequencial = false;
+    Scanner tec = new Scanner(System.in);
+    int n, valor, posicao, menor, maior;
     int[]array;
-
+    
     public Vetor(int aLength){
         this.n = aLength;
         this.array = new int[n];
     }
-    public void povoaVetor(){
+    
+    public void povoaVetor(boolean sequencial){
         Random random = new Random();
         int n = random.nextInt(this.array.length) + 1;
         for (int i = 0; i < this.array.length; i++){
@@ -22,8 +24,7 @@ public class Vetor {
     }
 
     public void povoaVetorSequencial(){
-        this.sequencial = true;
-        povoaVetor();
+        povoaVetor(true);
     }
 
     public void informaQuantosOcupados(){
@@ -34,6 +35,46 @@ public class Vetor {
             }
         }
         System.out.println("Valores válidos: " + cont);
+    }
+
+    public void maiorMenor(){
+        maior = this.array[0];
+        menor = this.array[0];
+
+        for(int i=0; i<this.array.length; i++){
+            if(this.array[i]<menor){
+                menor = this.array[i];
+            }
+            if(this.array[i]>maior){
+                maior = this.array[i];
+            }
+        }
+        System.out.println("Maior= "+maior);
+        System.out.println("Menor= "+menor);
+    }
+
+    public void atribuiValor(){
+        System.out.print("Digite o valor a ser adicionado: ");
+        valor = tec.nextInt();
+        System.out.print("Digite a posição a ser adicionada: ");
+        posicao = tec.nextInt();
+        array[posicao] = valor;
+    }
+    
+    public void removeValor(Boolean posicaoOuValor){
+        if (posicaoOuValor = true) {
+            System.out.print("Digite o valor a ser apagado: ");
+            valor = tec.nextInt();
+            for(int i = 0; i < this.array.length; i++){
+                if(this.array[i] == valor){
+                    this.array[i] = 0;
+                }
+            }
+        }else{
+            System.out.print("Digite a posicao a ser apagada: ");
+            posicao = tec.nextInt();
+            this.array[posicao] = 0;
+        }
     }
 
     public void listArray(){

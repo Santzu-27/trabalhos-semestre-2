@@ -61,7 +61,21 @@ public class App {
                     array.atribuiValor();
                     break;
                 case 12:
-                    array.removeValor();
+                    array.removeValor(true);
+                    break;
+                case 13:
+                    array.removeValor(false);
+                    break;
+                case 21:
+                    array.buscaSequencial();
+                    break;
+                case 22:
+                    System.out.println("Digite o valor a ser encontrado: ");
+                    int valor = tec.nextInt();
+                    array.buscaBinaria(0, array.array.length-1, 0, valor );
+                    break;
+                case 23:
+
                     break;
                 default: 
                     System.out.println("Comando inválido: '" + taskNumber + "' tente outro comando presente no menu");

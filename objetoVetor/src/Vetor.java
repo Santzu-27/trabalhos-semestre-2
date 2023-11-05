@@ -82,6 +82,39 @@ public class Vetor {
             System.out.println("[" + i + "]" + this.array[i] + "");
         }
     }
+    
+    public void buscaSequencial(){
+        System.out.print("Digite o valor a ser buscado: ");
+        valor = tec.nextInt();
+        for(int i=0; i<this.array.length; i++){
+            if(this.array[i] == valor){
+                System.out.println("Valor " + valor + " na posição " + i);
+            }
+        }
+    }
+
+    public int buscaBinaria(int inicio, int fim, int cont, int valor){
+        int meio;
+        meio = (inicio+fim+1)/2;
+        if(inicio <= fim) {
+            cont++;
+            meio = (inicio+fim+1)/2;
+            if(valor == array[meio]) {
+                System.out.println("O valor " + valor + " foi encontrado na posição: " + meio);
+                return -1;
+            }
+
+            if (valor < array[meio]) {
+                fim = meio - 1;
+            }
+            if (valor > array[meio]) {
+                inicio = meio +1;
+            }
+            return buscaBinaria(inicio, fim, cont, valor);
+        }
+        System.out.println("Valor não encontrado");
+        return -1;
+    }
 }    
 
 /*Classe que define o Objeto desta aplicação:

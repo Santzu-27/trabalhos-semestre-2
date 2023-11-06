@@ -115,6 +115,86 @@ public class Vetor {
         System.out.println("Valor não encontrado");
         return -1;
     }
+
+    public void ordenaBubble() {
+        int i, u;
+        for (u = this.array.length - 1; u > 0; u--) {
+            for (i = 0; i < u; i++) {
+                if (array[i] > array[i + 1]) {
+                    troca(array, i, i + 1);
+                }
+            }
+        }
+    }
+
+    public void ordenaInsert() {
+        int x, i, u;
+        for (i = 1; i < array.length; i++) {
+            x = array[i];
+            u = i - 1;
+            while ((u >= 0) && array[u] > x) {
+                array[u + 1] = array[u];
+                u--;
+            }
+            array[u + 1] = x;
+        }
+    }
+
+
+    public void ordenaSelect(){
+        for(int i = 0; i < array.length; i++){
+            int menor = i;
+            for(int u = i+1; u < array.length; u++){
+                if(array[u] < array[menor]){
+                    menor = u;
+                    
+                    //
+                }
+            }
+            troca(array, i, menor);
+        }
+    }
+
+
+    //10 5 11 7 3 8 13 9
+    public int particao(int[] array, int esquerda, int direita){
+        int meio = (int) (esquerda + direita)/2;
+        int pivo = array[meio];
+        int i = esquerda - 1;
+        int j = direita + 1;
+        while (true) {
+            do{
+                i++;
+                // System.out.println(i);
+                // System.out.println(array[i]);
+                // System.out.println("_______________________________");
+            }while(array[i] < pivo);
+            do{
+                j--;
+                // System.out.pri"_______________________________");
+            }while (array[j] > pivo);
+            if(i>= j){
+                return j;
+            }
+            int aux = array[i];
+            array[i] = array[j];
+            array[j] = aux;
+        }
+    }
+
+    public void ordenaQuick(int[] array, int esquerda, int direita){
+        if(esquerda < direita){
+            int p = particao(array, esquerda, direita);
+            ordenaQuick(array, esquerda, p);
+            ordenaQuick(array, p+1, direita);
+        }
+    }
+
+    public void troca(int[] arrayP, int i, int i1) {
+        int ast = arrayP[i];
+        arrayP[i] = arrayP[i1];
+        arrayP[i1] = ast;
+    }
 }    
 
 /*Classe que define o Objeto desta aplicação:

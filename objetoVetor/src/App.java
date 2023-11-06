@@ -23,8 +23,7 @@ public class App {
                 "31. Ordenar o vetor do objeto, utilizando o método Bubblesort;\n" +
                 "32. Ordenar o vetor do objeto, utilizando o método Insertionsort;\n" +
                 "33. Ordenar o vetor do objeto, utilizando o método Selectionsort.\n" +
-                "34. Ordenar o vetor do objeto, utilizando o método Quicksort.\n" +
-                "Classe que define o Objeto desta aplicação:");
+                "34. Ordenar o vetor do objeto, utilizando o método Quicksort.\n");
                 System.out.println("Digite um comando -> ");
                 int taskNumber = scanInt();
                 return taskNumber;
@@ -74,8 +73,17 @@ public class App {
                     int valor = tec.nextInt();
                     array.buscaBinaria(0, array.array.length-1, 0, valor );
                     break;
-                case 23:
-
+                case 31:
+                    array.ordenaBubble();
+                    break;
+                case 32:
+                    array.ordenaInsert();
+                    break;
+                case 33:
+                    array.ordenaSelect();
+                    break;
+                case 34:
+                    array.ordenaQuick(array.array, 0, array.array.length-1);
                     break;
                 default: 
                     System.out.println("Comando inválido: '" + taskNumber + "' tente outro comando presente no menu");

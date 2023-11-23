@@ -3,52 +3,49 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static int register(Livro livro) {
+    public static Livro register(ArrayList livros) {
         Scanner tec = new Scanner(System.in);
-        int filial;
-        
-        System.out.print("Código da filial a ser cadastrada -> ");
-        System.out.print("#FL");
-        filial = tec.nextInt();
-
+        Livro novoLivro = new Livro();
         System.out.print("Titulo do Livro -> ");
-        livro.titulo = tec.next();
+        novoLivro.titulo = tec.next();
 
         System.out.print("Código -> ");
-        livro.codigo = tec.next();
+        novoLivro.codigo = tec.next();
 
         System.out.print("Editora -> ");
-        livro.editora = tec.next();
+        novoLivro.editora = tec.next();
 
         System.out.print("Categoria -> ");
-        livro.area = tec.next();
+        novoLivro.area = tec.next();
 
         System.out.print("Ano -> ");
-        livro.ano = tec.nextInt();
+        novoLivro.ano = tec.nextInt();
         
         System.out.print("Valor -> ");
-        livro.valor = tec.nextDouble();
+        novoLivro.valor = tec.nextDouble();
 
         System.out.print("Quantidade em estoque -> ");
-        livro.estoque = tec.nextInt();
+        novoLivro.estoque = tec.nextInt();
+        livros.add(novoLivro);
+        return novoLivro;
     }
-    
-    public static Filial criarFilial(int quantFiliais){
+
+    public static Filial criarFilial(int codFiliais) {
         Scanner tec = new Scanner(System.in);
         Filial fl = new Filial();
-        fl.codigo = quantFiliais;
+        fl.codigo = codFiliais;
         System.out.print("Digite o nome da Filial: ");
         fl.nome = tec.nextLine();
         System.out.print("Digite o endereço da Filial: ");
         fl.endereco = tec.nextLine();
-        System.out.print("Digite o endereço da Filial: ");
+        System.out.print("Digite o contato da Filial: ");
         fl.contato = tec.nextLine();
-        tec.close();
+        // tec.close();
+        fl.info();
         return fl;
     }
 
-
-    public static void autoReg(Livro livro, Biblioteca lib, int test){
+    public static void autoReg(Livro livro, int test) {
         livro.titulo = "IT" + test;
         livro.codigo = "7878";
         livro.editora = "Panam";
@@ -56,122 +53,80 @@ public class Main {
         livro.ano = 2018;
         livro.valor = 50;
         livro.estoque = 10;
-        lib.array.add(livro);
     }
 
     public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
-        Livro livro, bookI;
+        Livro livro, livroI;
         ArrayList<Filial> filiais = new ArrayList<Filial>();
-
-        int task, quant, quantFiliais;
+        ArrayList<Livro> livros = new ArrayList<Livro>();
+        int task, quant, codigosFiliais, codFilial;
         double price;
         String prog = "rodando";
 
-        quantFiliais = 0;
+        codigosFiliais = 0;
         int count = 1;
 
         while(prog == "rodando"){
-            livro = new Livro();
-            System.out.println("1 – Cadastrar novo livro\n"+
-            "2 - Listar livros\n"+
-            "3 - Buscar livros por nome\n"+
-            "4 - Buscar livros por categoria\n"+
-            "5 - Buscar livros por preço\n"+
-            "6 - Busca por quantidade em estoque\n"+
-            "7 - Valor total no estoque\n"+
-            "8 - Carregar estoque\n"+
-            "9 - Atualizar arquivo de estoque\n"+
-            "10 - Criar filial\n"+
-            "11 - Adicionar Livro existente à uma filial \n"+
-            "0 - Encerrar atividades\n");
+            System.out.println(
+            "1 – Cadastrar novo livro\n"+
+            "2 - Buscar livro por código \n"+
+            "3 - Buscar em filial \n" +
+            "4 - Carregar estoque\n"+
+            "5 - Atualizar arquivo de estoque\n"+
+            "6 - Criar filial\n"+
+            "7 - Adicionar Livro existente à uma filial \n"+
+            "0 - Encerrar atividades\n"
+            );
             
             System.out.print("Digite o comando a ser realizado: ");
             task = tec.nextInt();
             switch(task){
                 case 1:
-                    System.out.print("Digite a filial ");
-                    register(livro);
+                    System.out.print("Digite a filial a ser cadastrada os livros -> #FL");
+                    int codigoCadastro = tec.nextInt();
+                    filiais.get(codigoCadastro).estoqueFilial.add(register(livros));
                     break;
                 case 2:
-                    for(int i = 0; i<.array.size(); i++) {
-                        bookI = .array.get(i);
-                        bookI.info();
+                    System.out.print("Digite o código do livro - > COD#");
+                    String codBusca = tec.next();
+                    for(int i = 0; i < filiais.size(); i++) {
+                        filiais.get(i).buscaCodigo(codBusca);
                     }
                     break;
                 case 3:
-                    System.out.print("Informe o titulo do livro: ");
-                    String nome = tec.next();
-                    for(int i = 0; i < .array.size(); i++){
-                        bookI = .array.get(i);
-                        if(nome.equals(bookI.titulo) ){
-                            bookI.info();
-                        }
-                    }
+                    System.out.println("Digite o código da filial que deseja buscar: ");
+                    codFilial = tec.nextInt();
+                    filiais.get(codFilial).busca();
                     break;
-                case 4:
-                    System.out.print("Informe a categoria do livro: ");
-                    String categ = tec.next();
-                    for(int i = 0; i < .array.size(); i++){
-                        bookI = .array.get(i);
-                        if(categ.equals(bookI.area)){
-                            bookI.info();
-                        }
-                    }
-                    break;
-                case 5:
-                    System.out.print("Digite o preço máximo desejado: ");
-                    price = tec.nextDouble();
-                    for(int i = 0; i < .array.size(); i++){
-                        bookI = .array.get(i);
-                        if(price >= bookI.valor){
-                            bookI.info();
-                        }
-                    }
-                    break;
-                case 6 :
-                    System.out.print("Informe a quantidade mínima de estoque do livro: ");
-                    quant = tec.nextInt();
-                    for(int i = 0; i < .array.size(); i++){
-                        bookI = .array.get(i);
-                        if(quant <= bookI.estoque){
-                            bookI.info();
-                        }
-                    }
+                case 6:
+                    filiais.add(criarFilial(codigosFiliais));
+                    codigosFiliais +=1;
                     break;
                 case 7:
-                    System.out.print("Informe o valor de estoque minimo do livro: ");
-                    double totalEstoque = tec.nextDouble();
-                    for(int i = 0; i < .array.size(); i++){
-                        bookI = .array.get(i);
-                        if(totalEstoque <= bookI.valorTotal()){
-                            bookI.info();
-                        }
+                    System.out.println("Digite o código do livro a ser adicionado: ");
+                    String codLivro = tec.nextLine();
+                    System.out.println("Digite o código da filial a adicionar o livro: #FL");
+                    codFilial = tec.nextInt();
+                    Livro existente = new Livro();
+                    for(int i = 0; i < filiais.size(); i++){
+                        existente = filiais.get(i).buscaCodigo(codLivro);
                     }
-                    break;
-                case 8:
-                    .loadFile();
-                    break;
-                case 9:
-                    .loadFile();
-                    break;
-                case 10:
-                    filiais.add(criarFilial(quantFiliais));
-                    quantFiliais +=1;
+                    filiais.get(codFilial).addExistente(existente);
                     break;
                 case 0:
                     System.out.println("Deseja atualizar os dados antes de encerrar? (S/N)");
                     String resp = tec.next();
                     if(resp.equals("S")){
-                        .loadFile();
+                        // .loadFile();
                     }
                     System.out.println("Fim do programa.");
                     prog = "cabô";
                     break;
-                //Cadastro automatico para teste do programa;//
-                //Cadastro automatico para teste do programa;//
+                // Cadastro automatico para teste do programa;//
+                // Cadastro automatico para teste do programa;//
                 case 77:
-                    autoReg(livro, count);
+                    // autoReg(livro, count);
                     count++;
                     break;
             }

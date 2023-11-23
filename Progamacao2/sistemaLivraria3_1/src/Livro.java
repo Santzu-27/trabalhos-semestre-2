@@ -12,7 +12,6 @@ public class Livro {
     String titulo, codigo, editora, area;
     int ano, estoque;
     double valor;
-    int estoqueTotal = 0;
 
     public double valorTotal() {
         return estoque * valor;

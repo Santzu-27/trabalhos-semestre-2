@@ -8,7 +8,7 @@ public class Biblioteca {
 
     public void loadFile() throws Exception {
         int i;
-        this.file = new FileInputStream("sistemaLivraria2/src/txtData.txt");
+        this.file = new FileInputStream("sistemaLivraria3/src/txtData.txt");
         Scanner textIn = new Scanner(file);
         String line, model;
         String[] splitLine, splitInfo;

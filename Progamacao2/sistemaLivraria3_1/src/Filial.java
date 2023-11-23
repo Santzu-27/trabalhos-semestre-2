@@ -30,24 +30,22 @@ public class Filial {
         }
     }
 
-    public void buscaCodigo(String codigoBuscado) {
-        boolean encontrado = false;
-        double valorTotal = 0;
+    public boolean buscaCodigo(String codigoBuscado, boolean encontrado) {
         for (int i = 0; i < estoqueFilial.size(); i++) {
             Livro livroBuscado = estoqueFilial.get(i);
             if (codigoBuscado.equals(livroBuscado.codigo) && !encontrado) {
                 System.out.println(">>>>> COD#"+livroBuscado.codigo);
-                System.out.println("Titulo/Editora: "+livroBuscado.codigo +"/"+ livroBuscado.editora);
+                System.out.println("Titulo/Editora: "+livroBuscado.titulo +"/"+ livroBuscado.editora);
                 System.out.println("Categoria: "+livroBuscado.area);
                 System.out.println("Ano: "+livroBuscado.ano);
                 encontrado = true;
             }
             if (codigoBuscado.equals(livroBuscado.codigo) && encontrado) {
                 System.out.println("Valor: " + livroBuscado.valor +" >>> " + "Filial " + this.nome + ", estoque : " + livroBuscado.estoque );
-                valorTotal += livroBuscado.valorTotal();
+                return true;
             }
         }
-        System.out.println("Valor total em estoque: " + valorTotal);
+        return encontrado;
     }
     public Livro encontraExistente(String codigoBuscado) {
         Livro existente = new Livro();
@@ -81,7 +79,9 @@ public class Filial {
                         "2 - Buscar por categoria \n" +
                         "3 - Buscar por preço máximo \n" +
                         "4 - Buscar por preço mínimo \n" +
-                        "5 - Buscar por quantidade em estoque \n");
+                        "5 - Buscar por quantidade em estoque \n"+
+                        "6 - Listar todos os livros daqui"
+                        );
         int comando = tec.nextInt();
         switch (comando) {
             case 1:
@@ -129,6 +129,10 @@ public class Filial {
                     }
                 }
                 break;
+            case 6:
+                for (int i = 0; i < estoqueFilial.size(); i++) {
+                    estoqueFilial.get(i).info();
+                }
             default:
                 break;
         }

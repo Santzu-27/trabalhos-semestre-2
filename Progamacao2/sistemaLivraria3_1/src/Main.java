@@ -41,28 +41,49 @@ public class Main {
         System.out.print("Digite o contato da Filial: ");
         fl.contato = tec.nextLine();
         // tec.close();
-        fl.info();
+        return fl;
+    }
+    //////REGISTRO AUTOMATICO DE FILIAIS
+    public static Filial autoFilial(int codFiliais){
+        Filial fl = new Filial();
+        fl.codigo = codFiliais;
+        fl.nome = "Filial número " + codFiliais;
+        fl.endereco = "Rua A" +10*codFiliais;
+        fl.contato = (50+codFiliais)*50+"4500";
+        // tec.close();
         return fl;
     }
 
-    public static void autoReg(Livro livro, int test) {
-        livro.titulo = "IT" + test;
-        livro.codigo = "7878";
-        livro.editora = "Panam";
-        livro.area = "Terror";
-        livro.ano = 2018;
-        livro.valor = 50;
-        livro.estoque = 10;
+    //REGISTRO AUTOMATICO PARA TESTE DO PROGRAMA MAIS RAPIDO
+    public static Livro autoReg(ArrayList livros, int autoIncrement) {
+        Livro novoLivro = new Livro();
+        novoLivro.titulo = "It " + autoIncrement;
+        
+        novoLivro.codigo = "7878";
+
+        novoLivro.editora = "Panam";
+
+        novoLivro.area = "Terror";
+
+        novoLivro.ano = 2018;
+               
+        novoLivro.valor = 50*autoIncrement;
+
+        novoLivro.estoque = 5*autoIncrement;
+        livros.add(novoLivro);
+
+        return novoLivro;
     }
 
     public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
         ArrayList<Filial> filiais = new ArrayList<Filial>();
         ArrayList<Livro> livros = new ArrayList<Livro>();
-        int task,codigosFiliais, codFilial;
+        int task, autoIncrementFiliais, codFilial, codigoCadastro, autoIncrementLivros;
         String prog = "rodando";
         Livro existente = new Livro();
-        codigosFiliais = 0;
+        autoIncrementFiliais = 0;
+        autoIncrementLivros = 0;
 
         while(prog == "rodando"){
             System.out.println(
@@ -80,15 +101,16 @@ public class Main {
             task = tec.nextInt();
             switch(task){
                 case 1:
-                    System.out.print("Digite a filial a ser cadastrada os livros -> #FL");
-                    int codigoCadastro = tec.nextInt();
+                    System.out.print("Digite o código da filial a cadastrado o livro -> #FL");
+                    codigoCadastro = tec.nextInt();
                     filiais.get(codigoCadastro).estoqueFilial.add(register(livros));
                     break;
                 case 2:
                     System.out.print("Digite o código do livro - > COD#");
                     String codBusca = tec.next();
+                    boolean encontrado = false;
                     for(int i = 0; i < filiais.size(); i++) {
-                        filiais.get(i).buscaCodigo(codBusca);
+                        encontrado = filiais.get(i).buscaCodigo(codBusca, encontrado);
                     }
                     break;
                 case 3:
@@ -97,8 +119,8 @@ public class Main {
                     filiais.get(codFilial).busca();
                     break;
                 case 6:
-                    filiais.add(criarFilial(codigosFiliais));
-                    codigosFiliais +=1;
+                    filiais.add(criarFilial(autoIncrementFiliais));
+                    autoIncrementFiliais +=1;
                     break;
                 case 7:
                     System.out.print("Digite o código do livro a ser adicionado: ");
@@ -127,8 +149,14 @@ public class Main {
                 // Cadastro automatico para teste do programa;//
                 // Cadastro automatico para teste do programa;//
                 case 77:
-                    // autoReg(livro, count);
-                    // count++;
+                    System.out.print("Digite o código da filial a cadastrada os livros -> #FL");
+                    codigoCadastro = tec.nextInt();
+                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(livros, autoIncrementLivros));
+                    autoIncrementLivros +=1;
+                    break;
+                case 88:
+                    filiais.add(autoFilial(autoIncrementFiliais));
+                    autoIncrementFiliais +=1;
                     break;
             }
 

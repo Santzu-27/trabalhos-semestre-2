@@ -30,26 +30,47 @@ public class Filial {
         }
     }
 
-    public Livro buscaCodigo(String codigoBuscado) {
-        int posicao;
-        posicao = -1;
+    public void buscaCodigo(String codigoBuscado) {
+        boolean encontrado = false;
+        double valorTotal = 0;
         for (int i = 0; i < estoqueFilial.size(); i++) {
-            if (codigoBuscado.equals(estoqueFilial.get(i).codigo)) {
-                info();
-                estoqueFilial.get(i).info();
-                posicao = i;
+            Livro livroBuscado = estoqueFilial.get(i);
+            if (codigoBuscado.equals(livroBuscado.codigo) && !encontrado) {
+                System.out.println(">>>>> COD#"+livroBuscado.codigo);
+                System.out.println("Titulo/Editora: "+livroBuscado.codigo +"/"+ livroBuscado.editora);
+                System.out.println("Categoria: "+livroBuscado.area);
+                System.out.println("Ano: "+livroBuscado.ano);
+                encontrado = true;
+            }
+            if (codigoBuscado.equals(livroBuscado.codigo) && encontrado) {
+                System.out.println("Valor: " + livroBuscado.valor +" >>> " + "Filial " + this.nome + ", estoque : " + livroBuscado.estoque );
+                valorTotal += livroBuscado.valorTotal();
             }
         }
-        return estoqueFilial.get(posicao);
+        System.out.println("Valor total em estoque: " + valorTotal);
+    }
+    public Livro encontraExistente(String codigoBuscado) {
+        Livro existente = new Livro();
+        for (int i = 0; i < estoqueFilial.size(); i++) {
+            if (codigoBuscado.equals(estoqueFilial.get(i).codigo)) {
+                existente = estoqueFilial.get(i);
+            }
+        }
+        return existente;
     }
 
     public void addExistente(Livro existente) {
         Scanner tec = new Scanner(System.in);
-        System.out.print("Qual a quantidade em estoque nesta filial?");
-        existente.estoque = tec.nextInt();
-        System.out.print("Qual o valor?");
-        existente.valor = tec.nextDouble();
-        estoqueFilial.add(existente);
+        Livro novoLivro = new Livro();
+        novoLivro.titulo = existente.titulo;
+        novoLivro.ano = existente.ano;
+        novoLivro.area = existente.area;
+        novoLivro.editora = existente.editora;
+        System.out.print("Qual a quantidade em estoque nesta filial? ");
+        novoLivro.estoque = tec.nextInt();
+        System.out.print("Qual o valor? R$");
+        novoLivro.valor = tec.nextDouble();
+        estoqueFilial.add(novoLivro);
     }
     public void busca() {
         double preco;

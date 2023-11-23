@@ -57,15 +57,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
-        Livro livro, livroI;
         ArrayList<Filial> filiais = new ArrayList<Filial>();
         ArrayList<Livro> livros = new ArrayList<Livro>();
-        int task, quant, codigosFiliais, codFilial;
-        double price;
+        int task,codigosFiliais, codFilial;
         String prog = "rodando";
-
+        Livro existente = new Livro();
         codigosFiliais = 0;
-        int count = 1;
 
         while(prog == "rodando"){
             System.out.println(
@@ -95,7 +92,7 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.out.println("Digite o código da filial que deseja buscar: ");
+                    System.out.print("Digite o código da filial que deseja buscar: #FL");
                     codFilial = tec.nextInt();
                     filiais.get(codFilial).busca();
                     break;
@@ -104,13 +101,17 @@ public class Main {
                     codigosFiliais +=1;
                     break;
                 case 7:
-                    System.out.println("Digite o código do livro a ser adicionado: ");
+                    System.out.print("Digite o código do livro a ser adicionado: ");
                     String codLivro = tec.nextLine();
-                    System.out.println("Digite o código da filial a adicionar o livro: #FL");
+                    codLivro = tec.nextLine();
+                    System.out.print("Digite o código da filial a adicionar o livro: #FL");
                     codFilial = tec.nextInt();
-                    Livro existente = new Livro();
                     for(int i = 0; i < filiais.size(); i++){
-                        existente = filiais.get(i).buscaCodigo(codLivro);
+                        existente = filiais.get(i).encontraExistente(codLivro);
+                        if(existente.codigo.equals(codLivro)){
+                            break;
+                        }
+                        System.out.println(existente.titulo + " " + existente.estoque);
                     }
                     filiais.get(codFilial).addExistente(existente);
                     break;
@@ -127,7 +128,7 @@ public class Main {
                 // Cadastro automatico para teste do programa;//
                 case 77:
                     // autoReg(livro, count);
-                    count++;
+                    // count++;
                     break;
             }
 

@@ -79,6 +79,7 @@ public class Main {
         Scanner tec = new Scanner(System.in);
         ArrayList<Filial> filiais = new ArrayList<Filial>();
         ArrayList<Livro> livros = new ArrayList<Livro>();
+
         int task, autoIncrementFiliais, codFilial, codigoCadastro, autoIncrementLivros;
         String prog = "rodando";
         Livro existente = new Livro();
@@ -151,8 +152,8 @@ public class Main {
                 case 77:
                     System.out.print("Digite o código da filial a cadastrada os livros -> #FL");
                     codigoCadastro = tec.nextInt();
-                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(livros, autoIncrementLivros));
                     autoIncrementLivros +=1;
+                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(livros, autoIncrementLivros));
                     break;
                 case 88:
                     filiais.add(autoFilial(autoIncrementFiliais));

@@ -1,16 +1,15 @@
 
-/*● Código (valor numérico)
-● Nome da filial
-● Endereço da filial
-● Contato da filial
-● Livros em estoque */
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Filial {
     int codigo;
     String nome, endereco, contato;
+    Path path = Path.of("C:\\Users\\gabi2\\OneDrive\\Área de Trabalho\\ADS\\trabalhos-semestre-2\\Progamacao2\\sistemaLivraria3_1\\src\\txtData.txt");
     ArrayList<Livro> estoqueFilial = new ArrayList<Livro>();
+    Files.createFile(path);
 
     public void info() {
 

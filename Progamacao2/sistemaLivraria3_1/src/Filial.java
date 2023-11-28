@@ -3,18 +3,18 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Filial {
-    int codigo;
-    String nome, endereco, contato;
+    String nome, endereco, contato, codigo;
     ArrayList<Livro> estoqueFilial = new ArrayList<Livro>();
 
 
     public void info() {
 
-        if (codigo > 9)
-            System.out.println("#FL" + codigo);
-        else
-            System.out.println("#FL0" + codigo);
+        // if (codigo > 9)
+        //     System.out.println("#FL" + codigo);
+        // else
+        //     System.out.println("#FL0" + codigo);
 
+        System.out.println("Código: " + codigo);
         System.out.println("Nome: " + nome);
         System.out.println("Endereço: " + endereco);
         System.out.println("Contato: " + contato);
@@ -37,7 +37,7 @@ public class Filial {
                 encontrado = true;
             }
             if (codigoBuscado.equals(livroBuscado.codigo) && encontrado) {
-                System.out.println("Valor: " + livroBuscado.valor +" >>> " + "Filial " + this.nome + ", estoque : " + livroBuscado.estoque );
+                System.out.println("Valor: " + livroBuscado.valor +" >>> " + "Filial '" + this.nome + "'', estoque : " + livroBuscado.estoque );
                 return true;
             }
         }
@@ -129,7 +129,10 @@ public class Filial {
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     estoqueFilial.get(i).info();
                 }
+                break;
             default:
+                System.out.println("Comando inválido");
+                busca();
                 break;
         }
     }

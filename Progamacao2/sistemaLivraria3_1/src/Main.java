@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import java.io.FilterWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,24 +38,32 @@ public class Main {
     public static Filial criarFilial(int codFiliais) {
         Scanner tec = new Scanner(System.in);
         Filial fl = new Filial();
-        fl.codigo = codFiliais;
+        if (codFiliais >9) {
+            fl.codigo = "#FL"+ codFiliais;
+        }else{
+            fl.codigo = "#FL0"+ codFiliais;
+        }
         System.out.print("Digite o nome da Filial: ");
         fl.nome = tec.nextLine();
         System.out.print("Digite o endereço da Filial: ");
         fl.endereco = tec.nextLine();
         System.out.print("Digite o contato da Filial: ");
         fl.contato = tec.nextLine();
-        System.out.println();
+        System.out.println(fl.codigo + " -> '" + fl.nome + "' criada!");
         // tec.close();
         return fl;
     }
     //////REGISTRO AUTOMATICO DE FILIAIS
     public static Filial autoFilial(int codFiliais){
         Filial fl = new Filial();
-        fl.codigo = codFiliais;
+        if (codFiliais >9) {
+            fl.codigo = "#FL"+ codFiliais;
+        }else{
+            fl.codigo = "#FL0"+ codFiliais;
+        }
         fl.nome = "Filial número " + codFiliais;
-        fl.endereco = "Rua A" +10*codFiliais;
-        fl.contato = (50+codFiliais)*50+"4500";
+        fl.endereco = "Rua A" +(10 + codFiliais)*codFiliais;
+        fl.contato = "(51)3200"+(50+codFiliais*2)*50;
         // tec.close();
         return fl;
     }
@@ -71,7 +81,7 @@ public class Main {
 
         novoLivro.ano = 2018;
                
-        novoLivro.valor = 50*autoIncrement;
+        novoLivro.valor = 25*autoIncrement;
 
         novoLivro.estoque = 5*autoIncrement;
         livros.add(novoLivro);
@@ -79,11 +89,22 @@ public class Main {
         return novoLivro;
     }
 
+    public static void atualizaFiliais(ArrayList filial){
+        String stringTxt = "";
+        Filial thisFilial = filial.get(0); //type mismatch cannot convert from object
+        for(int i = 0; i< filial.size(); i++){
+
+        }
+
+        //#FL01,Barra Sul,Diário de Noticias 80,3221-6369
+    }
+
     public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
         ArrayList<Filial> filiais = new ArrayList<Filial>();
         ArrayList<Livro> livros = new ArrayList<Livro>();
-
+        Path path = Path.of("C:\\Users\\gabi2\\OneDrive\\Área de Trabalho\\ADS\\trabalhos-semestre-2\\Progamacao2\\sistemaLivraria3_1\\src\\textData.txt");
+       
         int task, autoIncrementFiliais, codFilial, codigoCadastro, autoIncrementLivros;
         String prog = "rodando";
         Livro existente = new Livro();
@@ -92,13 +113,14 @@ public class Main {
 
         while(prog == "rodando"){
             System.out.println(
-            "1 – Cadastrar novo livro\n"+
+            "1 - Cadastrar novo livro\n"+
             "2 - Buscar livro por código \n"+
             "3 - Buscar em filial \n" +
             "4 - Carregar estoque\n"+
             "5 - Atualizar arquivo de estoque\n"+
             "6 - Criar filial\n"+
             "7 - Adicionar Livro existente à uma filial \n"+
+            "8 - Mostrar filiais existentes\n"+
             "0 - Encerrar atividades\n"
             );
             
@@ -123,6 +145,9 @@ public class Main {
                     codFilial = tec.nextInt();
                     filiais.get(codFilial).busca();
                     break;
+                case 5:
+                    atualizaFiliais(filiais);
+                    break;
                 case 6:
                     filiais.add(criarFilial(autoIncrementFiliais));
                     autoIncrementFiliais +=1;
@@ -141,6 +166,13 @@ public class Main {
                         System.out.println(existente.titulo + " " + existente.estoque);
                     }
                     filiais.get(codFilial).addExistente(existente);
+                    break;
+                case 8:
+                    for(int i = 0; i < filiais.size(); i++){
+                        filiais.get(i).info();
+                        System.out.println();
+                        System.out.println();
+                    }
                     break;
                 case 0:
                     System.out.println("Deseja atualizar os dados antes de encerrar? (S/N)");

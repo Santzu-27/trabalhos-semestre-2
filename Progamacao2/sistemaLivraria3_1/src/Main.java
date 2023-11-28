@@ -43,6 +43,7 @@ public class Main {
         fl.endereco = tec.nextLine();
         System.out.print("Digite o contato da Filial: ");
         fl.contato = tec.nextLine();
+        System.out.println();
         // tec.close();
         return fl;
     }
@@ -161,6 +162,9 @@ public class Main {
                 case 88:
                     filiais.add(autoFilial(autoIncrementFiliais));
                     autoIncrementFiliais +=1;
+                    break;
+                default:
+                    System.out.println("Digite um comando válido");
                     break;
             }
 

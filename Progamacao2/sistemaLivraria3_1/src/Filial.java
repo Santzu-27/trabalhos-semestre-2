@@ -21,7 +21,7 @@ public class Filial {
 
     public void listagemEstoque() {
         for (int i = 0; i < estoqueFilial.size(); i++) {
-            estoqueFilial.get(i).info();
+            estoqueFilial.get(i).info(false);
         }
     }
 
@@ -54,7 +54,7 @@ public class Filial {
         return existente;
     }
 
-    public void addExistente(Livro existente) {
+    public Livro addExistente(Livro existente) {
         Scanner tec = new Scanner(System.in);
         Livro novoLivro = new Livro();
         novoLivro.codigo = existente.codigo;
@@ -67,6 +67,18 @@ public class Filial {
         System.out.print("Qual o valor? R$");
         novoLivro.valor = tec.nextDouble();
         estoqueFilial.add(novoLivro);
+        return novoLivro;
+    }
+    public void addLivro(Livro novoLivro){   
+        Livro novoEstoque = new Livro();
+        novoEstoque.codigo = novoLivro.codigo;
+        novoEstoque.titulo = novoLivro.titulo;
+        novoEstoque.ano = novoLivro.ano;
+        novoEstoque.area = novoLivro.area;
+        novoEstoque.editora = novoLivro.editora;
+        novoEstoque.valor = novoLivro.valor;
+        novoEstoque.estoque = novoLivro.estoque;
+        estoqueFilial.add(novoEstoque);
     }
 
     public void busca() {
@@ -87,7 +99,7 @@ public class Filial {
                 String nome = tec.next();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (nome.equals(estoqueFilial.get(i).titulo)) {
-                        estoqueFilial.get(i).info();
+                        estoqueFilial.get(i).info(false);
                     }
                 }
                 break;
@@ -96,7 +108,7 @@ public class Filial {
                 String categ = tec.next();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (categ.equals(estoqueFilial.get(i).area)) {
-                        estoqueFilial.get(i).info();
+                        estoqueFilial.get(i).info(false);
                     }
                 }
                 break;
@@ -105,7 +117,7 @@ public class Filial {
                 preco = tec.nextDouble();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (preco >= estoqueFilial.get(i).valor) {
-                        estoqueFilial.get(i).info();
+                        estoqueFilial.get(i).info(false);
                     }
                 }
                 break;
@@ -114,7 +126,7 @@ public class Filial {
                 preco = tec.nextDouble();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (preco <= estoqueFilial.get(i).valorTotal()) {
-                        estoqueFilial.get(i).info();
+                        estoqueFilial.get(i).info(false);
                     }
                 }
             break;
@@ -123,13 +135,13 @@ public class Filial {
                 int quant = tec.nextInt();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (quant <= estoqueFilial.get(i).estoque) {
-                        estoqueFilial.get(i).info();
+                        estoqueFilial.get(i).info(false);
                     }
                 }
                 break;
             case 6:
                 for (int i = 0; i < estoqueFilial.size(); i++) {
-                    estoqueFilial.get(i).info();
+                    estoqueFilial.get(i).info(false);
                 }
                 break;
             default:

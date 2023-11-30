@@ -145,7 +145,6 @@ public class Main {
                 novoLivro.area = (sl[3]);
                 novoLivro.editora = sl[4];
                 
-                String converteString = sl[5];
                 sl[5] = sl[5].replace("R$", "");
                 System.out.println(sl[5]);
                 novoLivro.valor = Double.parseDouble(sl[5]);
@@ -191,7 +190,7 @@ public class Main {
                 case 1:
                     System.out.print("Digite o código da filial a cadastrado o livro -> #FL");
                     codigoCadastro = tec.nextInt();
-                    filiais.get(codigoCadastro).estoqueFilial.add(register(livros));
+                    filiais.get(codigoCadastro).addLivro(register(livros));
                     break;
                 case 2:
                     System.out.print("Digite o código do livro - > COD#");
@@ -229,7 +228,14 @@ public class Main {
                             break;
                         }
                     }
-                    filiais.get(codFilial).addExistente(existente);
+                    existente = filiais.get(codFilial).addExistente(existente);
+                    for(int i = 0; i < livros.size(); i++){
+                        if(existente.codigo == livros.get(i).codigo){
+                            System.out.println(existente.estoque);
+                            System.out.println(livros.get(i).estoque);
+                            livros.get(i).estoque += existente.estoque;
+                        }
+                    }
                     break;
                 case 8:
                     for(int i = 0; i < filiais.size(); i++){
@@ -240,7 +246,7 @@ public class Main {
                     break;
                 case 9:
                     for(int i = 0; i<livros.size(); i++){
-                        livros.get(i).info();
+                        livros.get(i).info(true);
                     }
                     break;
                 case 0:
@@ -257,8 +263,8 @@ public class Main {
                 case 77:
                     System.out.print("Digite o código da filial a cadastrada os livros -> #FL");
                     codigoCadastro = tec.nextInt();
-                    autoIncrementLivros +=1;
-                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(autoIncrementLivros, livros));
+                    autoIncrementLivros += 1;
+                    filiais.get(codigoCadastro).addLivro(autoReg(autoIncrementLivros, livros));
                     break;
                 case 88:
                     filiais.add(autoFilial(autoIncrementFiliais));

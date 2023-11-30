@@ -17,14 +17,18 @@ public class Livro {
         return estoque * valor;
     }
 
-    public void info() {
+    public void info(boolean geral) {
         System.out.println(">> Cod#" + codigo + "\n" +
                 "Titulo/Editora: " + titulo + "/" + editora + "\n" +
                 "Categoria: " + area + "\n" + //
                 "Ano: " + ano + "\n" + //
                 "Valor: " + valor + "\n" + //
-                "Estoque: " + estoque + "\n" + //
-                "Valor total em estoque: " + valorTotal());
+                "Estoque: " + estoque
+                ) ;//
+                if (geral == true) {
+                    return;
+                }
+                System.out.println("Valor total em estoque: " + valorTotal());
     }
 
 }

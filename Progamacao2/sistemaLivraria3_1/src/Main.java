@@ -1,14 +1,11 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
-import java.io.FilterWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Main {
 
-    public static Livro register(ArrayList livros) {
+    public static Livro register() {
         Scanner tec = new Scanner(System.in);
         Livro novoLivro = new Livro();
         System.out.print("Titulo do Livro -> ");
@@ -31,7 +28,6 @@ public class Main {
 
         System.out.print("Quantidade em estoque -> ");
         novoLivro.estoque = tec.nextInt();
-        livros.add(novoLivro);
         return novoLivro;
     }
 
@@ -69,7 +65,7 @@ public class Main {
     }
 
     //REGISTRO AUTOMATICO PARA TESTE DO PROGRAMA MAIS RAPIDO
-    public static Livro autoReg(ArrayList livros, int autoIncrement) {
+    public static Livro autoReg(int autoIncrement) {
         Livro novoLivro = new Livro();
         novoLivro.titulo = "It " + autoIncrement;
         
@@ -84,25 +80,86 @@ public class Main {
         novoLivro.valor = 25*autoIncrement;
 
         novoLivro.estoque = 5*autoIncrement;
-        livros.add(novoLivro);
-
         return novoLivro;
     }
 
-    public static void atualizaFiliais(ArrayList filial){
+    public static String atualizaFiliais(ArrayList<Filial> filial){
         String stringTxt = "";
-        Filial thisFilial = filial.get(0); //type mismatch cannot convert from object
+        Filial thisFilial;
+        Livro thisLivro;
         for(int i = 0; i< filial.size(); i++){
-
+            thisFilial = filial.get(i);
+            stringTxt += thisFilial.codigo + ",";
+            stringTxt += thisFilial.nome + ",";
+            stringTxt += thisFilial.endereco + ",";
+            stringTxt += thisFilial.contato + "\n";
+            for(int u = 0; u < thisFilial.estoqueFilial.size(); u++){
+                thisLivro = thisFilial.estoqueFilial.get(u);
+                stringTxt += thisLivro.codigo + ",";
+                stringTxt += thisLivro.titulo + ",";
+                stringTxt += thisLivro.ano + ",";
+                stringTxt += thisLivro.area + ",";
+                stringTxt += thisLivro.editora + ",";
+                stringTxt += "R$" + thisLivro.valor + ",";
+                stringTxt += thisLivro.estoque + "\n";
+            }
+            stringTxt += "\n";
         }
 
+        return stringTxt;
+
         //#FL01,Barra Sul,Diário de Noticias 80,3221-6369
+    }
+
+    public static void carregarEstoque(Path path, ArrayList<Filial> filiais) throws Exception{
+        Filial thisFilial;
+        String linha;
+        String [] sl;
+        int i;
+        Scanner arquivo = new Scanner(path);
+        //Remover atuais
+        for(i = 0; i < filiais.size(); i++){
+            thisFilial = filiais.get(i);
+            filiais.remove(thisFilial);
+        }
+        
+        int quantFiliais = 0;
+        while (arquivo.hasNextLine()) {
+            linha = arquivo.nextLine();
+            sl = linha.split(",");
+            if(sl.length == 4){
+                Filial novaFilial = new Filial();
+                novaFilial.codigo = sl[0];
+                novaFilial.nome = sl[1];
+                novaFilial.endereco = sl[2];
+                novaFilial.contato = sl[3];
+                filiais.add(novaFilial);
+            }
+            if (sl.length == 7) {
+                Livro novoLivro = new Livro();
+                novoLivro.codigo = sl[0];
+                novoLivro.titulo = sl[1];
+                novoLivro.ano= Integer.parseInt(sl[2]);
+                novoLivro.area = (sl[3]);
+                novoLivro.editora = sl[4];
+                
+                String converteString = sl[5];
+                sl[5] = sl[5].replace("R$", "");
+                System.out.println(sl[5]);
+                novoLivro.valor = Double.parseDouble(sl[5]);
+                
+                novoLivro.estoque = Integer.parseInt(sl[6]);
+                filiais.get(quantFiliais).estoqueFilial.add(novoLivro);
+            }
+            if(sl.length <= 1){
+                quantFiliais++;
+            }
+        }
     }
 
     public static void main(String[] args) throws Exception{
         Scanner tec = new Scanner(System.in);
         ArrayList<Filial> filiais = new ArrayList<Filial>();
-        ArrayList<Livro> livros = new ArrayList<Livro>();
         Path path = Path.of("C:\\Users\\gabi2\\OneDrive\\Área de Trabalho\\ADS\\trabalhos-semestre-2\\Progamacao2\\sistemaLivraria3_1\\src\\textData.txt");
        
         int task, autoIncrementFiliais, codFilial, codigoCadastro, autoIncrementLivros;
@@ -110,7 +167,7 @@ public class Main {
         Livro existente = new Livro();
         autoIncrementFiliais = 0;
         autoIncrementLivros = 0;
-
+        
         while(prog == "rodando"){
             System.out.println(
             "1 - Cadastrar novo livro\n"+
@@ -130,7 +187,7 @@ public class Main {
                 case 1:
                     System.out.print("Digite o código da filial a cadastrado o livro -> #FL");
                     codigoCadastro = tec.nextInt();
-                    filiais.get(codigoCadastro).estoqueFilial.add(register(livros));
+                    filiais.get(codigoCadastro).estoqueFilial.add(register());
                     break;
                 case 2:
                     System.out.print("Digite o código do livro - > COD#");
@@ -145,8 +202,12 @@ public class Main {
                     codFilial = tec.nextInt();
                     filiais.get(codFilial).busca();
                     break;
+                case 4:
+                    carregarEstoque(path, filiais);
+                    break;                
                 case 5:
-                    atualizaFiliais(filiais);
+                    String txt = atualizaFiliais(filiais);
+                    Files.writeString(path, txt);
                     break;
                 case 6:
                     filiais.add(criarFilial(autoIncrementFiliais));
@@ -178,18 +239,18 @@ public class Main {
                     System.out.println("Deseja atualizar os dados antes de encerrar? (S/N)");
                     String resp = tec.next();
                     if(resp.equals("S")){
-                        // .loadFile();
+                        atualizaFiliais(filiais);
                     }
                     System.out.println("Fim do programa.");
                     prog = "cabô";
                     break;
-                // Cadastro automatico para teste do programa;//
-                // Cadastro automatico para teste do programa;//
+                // Cadastros automaticos para teste do programa;//
+                // Cadastros automaticos para teste do programa;//
                 case 77:
                     System.out.print("Digite o código da filial a cadastrada os livros -> #FL");
                     codigoCadastro = tec.nextInt();
                     autoIncrementLivros +=1;
-                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(livros, autoIncrementLivros));
+                    filiais.get(codigoCadastro).estoqueFilial.add(autoReg(autoIncrementLivros));
                     break;
                 case 88:
                     filiais.add(autoFilial(autoIncrementFiliais));
@@ -203,3 +264,41 @@ public class Main {
         }
     }
 }
+/*
+I have a Class named Filial.
+On my Main class, i created a ArrayList of it:
+
+`ArrayList<Filial> filiais = new ArrayList<Filial>();
+`
+
+Still on my Main, i created a method:
+```
+    public static void atualizaFiliais(ArrayList filial){
+        Filial thisFilial = filial.get(0); // <======Error
+```
+
+But i get this error when i try do this, thats say:
+
+> 'Type mismatch cannot convert from Object to Filial' 
+
+Why cant i do this?
+
+ I also tried to set its attributes but also get error, for example:
+
+**Filial.java**
+```
+public class Filial {
+    String nome, endereco, contato, codigo;
+```
+
+**Main.java**
+```
+   public static void atualizaFiliais(ArrayList filial){
+             String txta;
+             txta = filial.get(0).nome //<====== Error
+```
+
+in that case it happens to appear the error on nome:
+> 
+> 'nome cannot be resolved or is not a field'
+ */

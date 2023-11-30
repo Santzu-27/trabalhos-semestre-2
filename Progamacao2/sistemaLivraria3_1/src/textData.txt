@@ -1,35 +1,6 @@
 #FL00,Filial número 0,Rua A0,(51)32002500
 7878,It 1,2018,Terror,Panam,R$25.0,5
-7878,It 2,2018,Terror,Panam,R$50.0,10
-7878,It 6,2018,Terror,Panam,R$150.0,30
 
 #FL01,Filial número 1,Rua A11,(51)32002600
-
-#FL02,Filial número 2,Rua A24,(51)32002700
-
-#FL03,Filial número 3,Rua A39,(51)32002800
-7878,It 5,2018,Terror,Panam,R$125.0,25
-
-#FL04,Filial número 4,Rua A56,(51)32002900
-
-#FL05,Filial número 5,Rua A75,(51)32003000
-7878,It 3,2018,Terror,Panam,R$75.0,15
-7878,It 4,2018,Terror,Panam,R$100.0,20
-
-#FL06,Filial número 6,Rua A96,(51)32003100
-
-#FL07,Filial número 7,Rua A119,(51)32003200
-7878,It 1,2018,Terror,Panam,R$25.0,5
-7878,It 3,2018,Terror,Panam,R$75.0,15
-
-#FL08,Filial número 8,Rua A144,(51)32003300
-7878,It 2,2018,Terror,Panam,R$50.0,10
-7878,It 4,2018,Terror,Panam,R$100.0,20
-7878,It 5,2018,Terror,Panam,R$125.0,25
-
-#FL09,Filial número 9,Rua A171,(51)32003400
-
-#FL10,Filial número 10,Rua A200,(51)32003500
-
-#FL11,Filial número 11,Rua A231,(51)32003600
+null,It 1,2018,Terror,Panam,R$10.0,60
 

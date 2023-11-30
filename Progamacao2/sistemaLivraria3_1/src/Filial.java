@@ -6,13 +6,12 @@ public class Filial {
     String nome, endereco, contato, codigo;
     ArrayList<Livro> estoqueFilial = new ArrayList<Livro>();
 
-
     public void info() {
 
         // if (codigo > 9)
-        //     System.out.println("#FL" + codigo);
+        // System.out.println("#FL" + codigo);
         // else
-        //     System.out.println("#FL0" + codigo);
+        // System.out.println("#FL0" + codigo);
 
         System.out.println("Código: " + codigo);
         System.out.println("Nome: " + nome);
@@ -30,19 +29,21 @@ public class Filial {
         for (int i = 0; i < estoqueFilial.size(); i++) {
             Livro livroBuscado = estoqueFilial.get(i);
             if (codigoBuscado.equals(livroBuscado.codigo) && !encontrado) {
-                System.out.println(">>>>> COD#"+livroBuscado.codigo);
-                System.out.println("Titulo/Editora: "+livroBuscado.titulo +"/"+ livroBuscado.editora);
-                System.out.println("Categoria: "+livroBuscado.area);
-                System.out.println("Ano: "+livroBuscado.ano);
+                System.out.println(">>>>> COD#" + livroBuscado.codigo);
+                System.out.println("Titulo/Editora: " + livroBuscado.titulo + "/" + livroBuscado.editora);
+                System.out.println("Categoria: " + livroBuscado.area);
+                System.out.println("Ano: " + livroBuscado.ano);
                 encontrado = true;
             }
             if (codigoBuscado.equals(livroBuscado.codigo) && encontrado) {
-                System.out.println("Valor: " + livroBuscado.valor +" >>> " + "Filial '" + this.nome + "'', estoque : " + livroBuscado.estoque );
+                System.out.println("Valor: " + livroBuscado.valor + " >>> " + "Filial '" + this.nome + "'', estoque : "
+                        + livroBuscado.estoque);
                 return true;
             }
         }
         return encontrado;
     }
+
     public Livro encontraExistente(String codigoBuscado) {
         Livro existente = new Livro();
         for (int i = 0; i < estoqueFilial.size(); i++) {
@@ -56,6 +57,7 @@ public class Filial {
     public void addExistente(Livro existente) {
         Scanner tec = new Scanner(System.in);
         Livro novoLivro = new Livro();
+        novoLivro.codigo = existente.codigo;
         novoLivro.titulo = existente.titulo;
         novoLivro.ano = existente.ano;
         novoLivro.area = existente.area;
@@ -66,6 +68,7 @@ public class Filial {
         novoLivro.valor = tec.nextDouble();
         estoqueFilial.add(novoLivro);
     }
+
     public void busca() {
         double preco;
         Scanner tec = new Scanner(System.in);
@@ -75,9 +78,8 @@ public class Filial {
                         "2 - Buscar por categoria \n" +
                         "3 - Buscar por preço máximo \n" +
                         "4 - Buscar por preço mínimo \n" +
-                        "5 - Buscar por quantidade em estoque \n"+
-                        "6 - Listar todos os livros daqui"
-                        );
+                        "5 - Buscar por quantidade em estoque \n" +
+                        "6 - Listar todos os livros daqui");
         int comando = tec.nextInt();
         switch (comando) {
             case 1:
@@ -107,20 +109,20 @@ public class Filial {
                     }
                 }
                 break;
-            case 5:
-                System.out.print("Informe a quantidade mínima de estoque do livro: ");
-                int quant = tec.nextInt();
-                for (int i = 0; i < estoqueFilial.size(); i++) {
-                    if (quant <= estoqueFilial.get(i).estoque) {
-                        estoqueFilial.get(i).info();
-                    }
-                }
-                break;
             case 4:
                 System.out.print("Informe o valor minimo do livro: ");
                 preco = tec.nextDouble();
                 for (int i = 0; i < estoqueFilial.size(); i++) {
                     if (preco <= estoqueFilial.get(i).valorTotal()) {
+                        estoqueFilial.get(i).info();
+                    }
+                }
+            break;
+            case 5:
+                System.out.print("Informe a quantidade mínima de estoque do livro: ");
+                int quant = tec.nextInt();
+                for (int i = 0; i < estoqueFilial.size(); i++) {
+                    if (quant <= estoqueFilial.get(i).estoque) {
                         estoqueFilial.get(i).info();
                     }
                 }

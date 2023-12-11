@@ -14,7 +14,10 @@ public class Grafo {
     }
 
     public void cadastra_conexao(){
+        Aresta novaConexao = new Aresta();
         System.out.print("Digite o número da primeira cidade: ");
+        int c1 = tec.nextInt();
+        novaConexao.cidade1 = cidades.get(c1);
         System.out.print("Digite o número da segunda cidade: ");
     }
 

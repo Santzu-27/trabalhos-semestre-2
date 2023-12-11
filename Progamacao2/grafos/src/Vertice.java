@@ -8,7 +8,7 @@ public class Vertice{
     public void info_vizinhos(){
         
     }
-    
+
     public void info_conexoes(){
 
     }

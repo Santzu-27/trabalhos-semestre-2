@@ -10,11 +10,9 @@ public class Grafo{
         Vertice novaCidade = new Vertice();
 
         System.out.print("Digite o nome da cidade: ");
-        String nome = tec.nextLine();
-        System.out.println(nome);
-        // novaCidade.nomeCidade = nome;
+        novaCidade.nomeCidade = tec.nextLine();
 
-        // this.cidades.add(novaCidade);
+        this.cidades.add(novaCidade);
     }
 
     public void cadastra_conexao(){

@@ -4,6 +4,9 @@ public class Aresta {
     int distancia;
 
     public void info_aresta(){
-        
+        System.out.println(
+            cidade1.nomeCidade + " - " + cidade2.nomeCidade + "\n" +
+            distancia + "Km"
+        );
     }
 }

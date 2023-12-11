@@ -28,10 +28,19 @@ public class Main{
                 case 3:
                     grafo.info_cidades();
                     break;
+                case 4:
+                    grafo.info_conexoes();
+                    break;
+                case 5:
+                    System.out.println("Digite o número da cidade desejada -> ");
+                    int cid = tec.nextInt();
+                    grafo.cidades.get(cid).info_vizinhos();
+                    break;
                 default:
                     break;
             }
-            
+            System.out.println();
+            System.out.println();
         } while (rodando = true);
     }
 }

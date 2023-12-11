@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner tec = new Scanner(System.in);
         int comando;
         Grafo grafo = new Grafo();
@@ -14,6 +14,7 @@ public class Main{
             "4 - Listar conexões. \n" +
             "5 - Listar cidades vizinhas."
         );
+        System.out.print("->");
         comando = tec.nextInt();
         switch (comando) {
             case 1:

@@ -1,16 +1,20 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Grafo {
-    ArrayList<Vertice> cidades;
-    ArrayList<Aresta> conexoes;
+public class Grafo{
+    ArrayList<Vertice> cidades = new ArrayList<Vertice>();
+    ArrayList<Aresta> conexoes = new ArrayList<Aresta>();
     Scanner tec = new Scanner(System.in);
+
     public void cadastra_cidade(){
         Vertice novaCidade = new Vertice();
 
         System.out.print("Digite o nome da cidade: ");
-        novaCidade.nomeCidade = tec.nextLine();
-        cidades.add(novaCidade);
+        String nome = tec.nextLine();
+        System.out.println(nome);
+        // novaCidade.nomeCidade = nome;
+
+        // this.cidades.add(novaCidade);
     }
 
     public void cadastra_conexao(){

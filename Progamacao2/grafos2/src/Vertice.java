@@ -5,36 +5,49 @@ public class Vertice{
     ArrayList<Vertice> vizinhanca = new ArrayList<Vertice>();
     ArrayList<Aresta> conexoes = new ArrayList<Aresta>();
 
-    public void info_vizinhos(){
-        int i, u;
-        for (u = conexoes.size() - 1; u > 0; u--) {
-            for (i = 0; i < u; i++) {
-                if (conexoes.get(i).distancia > conexoes.get(i+1).distancia) {
-                    swap(conexoes, i, i + 1);
-                }
-            }
-        }
-        for(i = 0; i < conexoes.size(); i++){
-            conexoes.get(i).cidade2.info_vertice(i);
-            System.out.println(conexoes.get(i).distancia);
+    public void info_vizinhos(int cid){
+        // int i, u;
+        // for (u = conexoes.size() - 1; u > 0; u--) {
+        //     for (i = 0; i < u; i++) {
+        //         if (conexoes.get(i).distancia > conexoes.get(i+1).distancia) {
+        //             swap(conexoes, i, i + 1);
+        //         }
+        //     }
+        // }
+        // for(i = 0; i < conexoes.size(); i++){
+        //     conexoes.get(i).cidade2.info_vertice(i);
+        //     if (conexoes.get(i).cidade1.nomeCidade.equals(conexoes)) {
+                
+        //     }
+        //     System.out.println(conexoes.get(i).distancia+ "Km");
             
-        }        
+        // }        
     }
 
-    public static void swap(ArrayList<Aresta> array, int i, int i2) {
-        Aresta ast = new Aresta();
-
-        ast.cidade1 = array.get(i).cidade1;
-        ast.cidade2 = array.get(i).cidade2;
-        ast.distancia = array.get(i).distancia;
-        
-        array.set(i, array.get(i2));
-        array.set(i2, ast);
-    }
 
     public void info_conexoes(){
-        for(int i = 0; i < conexoes.size(); i++){
-            conexoes.get(i).info_aresta();
+        // System.out.println(this.nomeCidade);
+
+        Aresta menor;
+        ArrayList<Aresta> ordenado = new ArrayList<Aresta>();
+
+        while (conexoes.size() >= 0) {
+            menor = conexoes.get(0);
+            for(Aresta conexao : conexoes){
+                if(conexao.distancia < menor.distancia){
+                    menor = conexao;
+                }
+            }
+            ordenado.add(menor);
+            conexoes.remove(menor);
+        }
+        conexoes = ordenado;
+
+        for(Aresta conexao : conexoes){
+            if(this.nomeCidade.equals(conexao.cidade1))
+                System.out.println(conexao.cidade2 + " - " + conexao.distancia+"km");
+                else
+                System.out.println(conexao.cidade1 + " - " + conexao.distancia+"km");
         }
     }
 

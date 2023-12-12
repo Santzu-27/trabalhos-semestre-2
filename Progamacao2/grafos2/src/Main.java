@@ -34,7 +34,7 @@ public class Main{
                 case 5:
                     System.out.println("Digite o número da cidade desejada -> ");
                     int cid = tec.nextInt();
-                    grafo.cidades.get(cid).info_vizinhos();
+                    grafo.cidades.get(cid).info_vizinhos(cid);
                     break;
                 default:
                     break;

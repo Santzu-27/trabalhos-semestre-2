@@ -30,12 +30,13 @@ public class Grafo{
         cidades.get(c1).vizinhanca.add(cidades.get(c2));
         cidades.get(c2).vizinhanca.add(cidades.get(c1));
         
-        cidades.get(c2).conexoes.add(novaConexao);
-        cidades.get(c1).conexoes.add(novaConexao);
-
+        
         System.out.print("Digite a distância entre as cidades (Km): ");
         int dist = tec.nextInt();
         novaConexao.distancia = dist;
+
+        cidades.get(c1).conexoes.add(novaConexao);
+        cidades.get(c2).conexoes.add(novaConexao);
 
         this.conexoes.add(novaConexao);
 

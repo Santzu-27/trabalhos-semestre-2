@@ -28,7 +28,7 @@ public class Vertice{
         ast.cidade2 = array.get(i).cidade2;
         ast.distancia = array.get(i).distancia;
         
-        array.set(i, array.get(2));
+        array.set(i, array.get(i2));
         array.set(i2, ast);
     }
 

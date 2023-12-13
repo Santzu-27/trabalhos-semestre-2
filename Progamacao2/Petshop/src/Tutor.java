@@ -1,3 +1,3 @@
-public class Tutor {
+public class Tutor extends Pessoa {
     
 }

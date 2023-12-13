@@ -9,7 +9,6 @@ public class Vertice{
  
     }
 
-
     public void info_conexoes(){
         // System.out.println(this.nomeCidade);
 

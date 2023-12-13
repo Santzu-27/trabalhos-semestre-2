@@ -8,11 +8,25 @@ public class Grafo{
 
     public void cadastra_cidade(){
         Vertice novaCidade = new Vertice();
-
+        
         System.out.print("Digite o nome da cidade: ");
         novaCidade.nomeCidade = tec.nextLine();
-
+        
         this.cidades.add(novaCidade);
+        
+        //Registro automatico pra teste
+        Vertice novaCidade1 = new Vertice();
+        this.cidades.add(novaCidade1);
+        novaCidade1.nomeCidade = "esteio";
+        Vertice novaCidade2 = new Vertice();
+        this.cidades.add(novaCidade2);
+        novaCidade2.nomeCidade = "viamao";
+        Vertice novaCidade3 = new Vertice();
+        this.cidades.add(novaCidade3);
+        novaCidade3.nomeCidade = "canoas";
+        Vertice novaCidade4 = new Vertice();
+        this.cidades.add(novaCidade4);
+        novaCidade4.nomeCidade = "lajeado";
     }
 
     public void cadastra_conexao(){

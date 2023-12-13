@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main{
@@ -18,6 +17,7 @@ public class Main{
             );
             System.out.print("->");
             comando = tec.nextInt();
+            
             switch (comando) {
                 case 1:
                     grafo.cadastra_cidade();
@@ -34,9 +34,10 @@ public class Main{
                 case 5:
                     System.out.println("Digite o número da cidade desejada -> ");
                     int cid = tec.nextInt();
-                    grafo.cidades.get(cid).info_vizinhos(cid);
+                    grafo.cidades.get(cid).info_conexoes();
                     break;
                 default:
+                    rodando = false;
                     break;
             }
             System.out.println();

@@ -1,7 +1,5 @@
-package banco;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Banco {
@@ -13,7 +11,7 @@ public class Banco {
     Banco(String nome, String cnpj, ArrayList<Banco> todosBancos){
         this.nome = nome;
         this.cnpj = cnpj;
-        this.id = genId(todosBancos);
+        this.id = genIdBanco(todosBancos);
     }
     void infoBanco(){
         System.out.printf(
@@ -28,9 +26,9 @@ public class Banco {
     }
     void novaConta(Pessoa titular, String senha, double val, int type){
 
-        if(type == 1) contasBanco.add(new Corrente(titular, this, senha, genId(), val));
+        if(type == 1) contasBanco.add(new Corrente(titular, this, senha, genIdConta(), val));
 
-        else if (type == 2) contasBanco.add(new Poupanca(titular, this, senha, genId(), val));
+        else if (type == 2) contasBanco.add(new Poupanca(titular, this, senha, genIdConta(), val));
 
         titular.addConta(contasBanco.get(contasBanco.size() - 1));
     }
@@ -48,45 +46,22 @@ public class Banco {
         if (conta_to_remove != null) conta_to_remove.titular.rmvConta(conta_to_remove, senha);
     }
 
-    int genId(){
+    int genIdConta(){
         int id = 1;
-        boolean contained;
-        // Random rng = new Random();
-
-        // do{
-        //     contained = false;
-        //     id = rng.nextInt(1000, 9999);
-        //     for (Conta conta : contasBanco){
-        //         if (id == conta.id){
-        //             contained = true;
-        //             break;
-        //         }
-        //     }
-        // }while (contained);
-        // return id;
         for(Conta conta : contasBanco){
             id++;
         }
+        // System.out.printf("ID conta: %d\n", id);
         return id;
     }
 
-    int genId(ArrayList<Banco> bancos){
-        int id;
-        boolean contained;
-        Random rng = new Random();
+    int genIdBanco(ArrayList<Banco> bancos){
+        int id = 1;
 
-        do{
-            contained = false;
-            id = rng.nextInt(1000, 9999);
-            for (Banco banco : bancos){
-                if (id == banco.getId()){
-                    contained = true;
-                    break;
-                }
-            }
-        }while (contained);
-
-        System.out.printf("ID banco: %d\n", id);
+        for(Banco banco : bancos){
+            id++;
+        }
+        // System.out.printf("ID banco: %d\n", id);
         return id;
 
     }

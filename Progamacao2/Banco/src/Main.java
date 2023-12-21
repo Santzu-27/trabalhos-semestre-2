@@ -1,5 +1,3 @@
-package banco;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,8 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Pessoas.add(new Pessoa("pedro", "silva", "123"));
-        Bancos.add(new Banco("itau", "555", Bancos));
+        Pessoas.add(new Pessoa("lais", "paim", "800"));
+        Bancos.add(new Banco("caixa", "4444", Bancos));
 
         Bancos.get(0).novaConta(Pessoas.get(0), "123", 10, 1);
         Bancos.get(0).novaConta(Pessoas.get(0), "123", 10, 2);
@@ -156,7 +154,7 @@ public class Main {
     static void gerenciarPessoa(){
         System.out.print(
                 """
-                    ============ pessoa ============
+                    ============< Pessoa >============
                         1- Cadastrar Pessoa
                         2- Acessar conta
                         3- Todas contas de Pessoa

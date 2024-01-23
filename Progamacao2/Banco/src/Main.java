@@ -16,48 +16,50 @@ public class Main {
         Bancos.get(0).novaConta(Pessoas.get(0), "123", 10, 1);
         Bancos.get(0).novaConta(Pessoas.get(0), "123", 10, 2);
 
-        opcoes();
+        menu();
 
     }
 
-    static void opcoes(){
+    static void menu(){
         System.out.print(
                 """
-                    
-                        1- Gerenciar bancos
-                        2- Gerenciar pessoas
-                        0- Sair
-                >>> """
+                1- Gerenciar bancos
+                2- Gerenciar pessoas
+                0- Sair
+                ->  """
         );
-        String opt = sc.next();
+        String opcao = sc.next();
 
 
-        switch (opt){
+        switch (opcao){
 
-            case "1" -> gerenciarBanco();
-            case "2" -> gerenciarPessoa();
-            case "0" -> System.out.println("Encerrando...");
-            default -> System.out.println("opcao invalida");
-
+            case "1":
+                gerenciarBanco(); break;
+            case "2":
+                gerenciarPessoa(); break;
+            case "0":
+                System.out.println("Encerrando..."); break;
+            default: 
+                System.out.println("opcao invalida");
         }
-        if (!opt.equals("0")) opcoes();
+        if (!opcao.equals("0")) menu();
 
     }
     static void gerenciarBanco(){
         System.out.print(
                 """
-                     >---------------BANCO--------------<
-                        1- Criar banco
-                        2- Acessar banco
-                        3- Criar conta
-                        4- Remover conta
-                        5- Todas contas do banco
-                        0- Voltar
-                >>>"""
+                ---------------=<  BANCO  >=--------------
+                1- Criar banco
+                2- Acessar banco
+                3- Criar conta
+                4- Remover conta
+                5- Todas contas do banco
+                0- Voltar
+                ----> """
         );
-        String opt = sc.next();
+        String opcao = sc.next();
 
-        switch (opt){
+        switch (opcao){
             case "1" -> {
                 sc.nextLine();
                 System.out.print("Nome do banco: ");
@@ -101,13 +103,11 @@ public class Main {
                 double val = sc.nextInt();
                 sc.nextLine();
 
-
                 for (Banco banco : Bancos){
                     if (banco.getId() == id) {
 
                         for (Pessoa pessoa : Pessoas){
                             if (pessoa.getCpf().equals(cpf)){
-
                                 banco.novaConta(pessoa, senha, val, type);
                                 break;
                             }
@@ -149,21 +149,21 @@ public class Main {
             case "0" -> System.out.println();
             default -> System.out.println("opcao invalida");
         }
-        if (!opt.equals("0")) gerenciarBanco();
+        if (!opcao.equals("0")) gerenciarBanco();
     }
     static void gerenciarPessoa(){
         System.out.print(
                 """
-                    ============< Pessoa >============
-                        1- Cadastrar Pessoa
-                        2- Acessar conta
-                        3- Todas contas de Pessoa
-                        0- Voltar
+                ----------< Pessoa >-----------
+                    1- Cadastrar Pessoa
+                    2- Acessar conta
+                    3- Todas contas de Pessoa
+                    0- Voltar
                 >>>"""
         );
-        String opt = sc.next();
+        String opcao = sc.next();
 
-        switch (opt) {
+        switch (opcao) {
             case "1" -> Pessoas.add(new Pessoa());
             case "2" -> {
                 sc.nextLine();
@@ -187,8 +187,8 @@ public class Main {
                 Conta conta = Pessoas.get(indexPessoa).getConta(idconta, senha);
                 String optconta = "";
                 if (conta != null){
-                    System.out.print("( 1- Info conta \n2- Deposito \n3- Saque \n4- Novo mes \n0- voltar )");
                     do{
+                        System.out.print("( 1- Info conta \n2- Deposito \n3- Saque \n4- Novo mes \n0- voltar )");
                         System.out.print(">>> ");
                         optconta = sc.nextLine();
 
@@ -214,6 +214,6 @@ public class Main {
             case "0" -> System.out.println();
             default -> System.out.println("opcao invalida");
         }
-        if (!opt.equals("0")) gerenciarPessoa();
+        if (!opcao.equals("0")) gerenciarPessoa();
     }
 }

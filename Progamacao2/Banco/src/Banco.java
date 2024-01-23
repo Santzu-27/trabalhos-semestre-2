@@ -43,7 +43,7 @@ public class Banco {
                 break;
             }
         }
-        if (conta_to_remove != null) conta_to_remove.titular.rmvConta(conta_to_remove, senha);
+        if (conta_to_remove != null) conta_to_remove.titular.removeConta(conta_to_remove, senha);
     }
 
     int genIdConta(){

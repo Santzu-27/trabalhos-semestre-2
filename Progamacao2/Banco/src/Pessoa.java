@@ -38,7 +38,7 @@ public class Pessoa {
         this.contas.add(conta);
         System.out.printf("ID conta: %d\n", this.contas.get(this.contas.size() - 1).id);
     }
-    void rmvConta(Conta conta, String senha) { if (conta.verificaSenha(senha))this.contas.remove(conta); }
+    void removeConta(Conta conta, String senha) { if (conta.verificaSenha(senha))this.contas.remove(conta); }
     String getCpf() { return cpf; }
 
     Conta getConta(int id, String senha) {
